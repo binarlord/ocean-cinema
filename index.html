@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ОКЕАН КИНО | Смотреть фильмы</title>
+    
+    <!-- SEO мета-теги -->
+    <title>Океан Кино — смотреть фильмы онлайн бесплатно</title>
+    <meta name="description" content="Океан Кино — смотри новинки кино онлайн бесплатно в хорошем качестве. Боевики, комедии, драмы, фэнтези. Без регистрации.">
+    <meta name="keywords" content="смотреть фильмы онлайн, фильмы бесплатно, кино онлайн, новинки кино, Океан Кино, смотреть фильм">
+    <meta name="author" content="Ocean Cinema">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Фавикон -->
+    <link rel="icon" type="image/png" href="film-audi.png">
+    
     <style>
         * {
             margin: 0;
@@ -102,27 +112,101 @@
             justify-content: center;
             margin: 20px;
         }
-        .donate-card {
-            background: linear-gradient(135deg, #1e1b4b, #2e1065);
+        /* Современный блок доната */
+        .modern-donate {
+            max-width: 550px;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95), rgba(46, 16, 101, 0.95));
+            backdrop-filter: blur(10px);
             border-radius: 40px;
-            padding: 20px 36px;
-            text-align: center;
-            border: 1px solid #8b5cf6;
-            max-width: 500px;
-            cursor: pointer;
-            transition: 0.3s;
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            transition: all 0.3s ease;
         }
-        .donate-card:hover {
+        .modern-donate:hover {
             transform: translateY(-5px);
+            border-color: #c084fc;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.4);
+        }
+        .donate-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .donate-icon-main {
+            font-size: 40px;
+        }
+        .modern-donate h2 {
+            color: white;
+            font-size: 28px;
+            margin: 0;
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .donate-text {
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        .donate-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 20px;
         }
         .donate-btn {
-            background: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
             border: none;
-            padding: 10px 32px;
-            border-radius: 40px;
+            padding: 12px 28px;
+            border-radius: 50px;
             color: white;
-            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+        .donate-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(139, 92, 246, 0.5);
+        }
+        .qr-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+        }
+        .qr-code-modern {
+            text-align: center;
+        }
+        .qr-code-modern img {
+            border-radius: 16px;
+            background: white;
+            padding: 8px;
+            width: 140px;
+            height: 140px;
+        }
+        .qr-text {
+            color: #f59e0b;
+            font-size: 12px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .donate-footer {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .donate-footer span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
         }
         .extra-row {
             padding: 20px 30px;
@@ -235,10 +319,24 @@
 </div>
 
 <div class="donate-section">
-    <div class="donate-card" onclick="window.open('https://www.donationalerts.com/r/TV0Y_HNK', '_blank')">
-        <div class="donate-icon">🎬☕</div>
-        <h2 style="color:white;">Поддержать кинотеатр</h2>
-        <button class="donate-btn">Отправить донат</button>
+    <div class="modern-donate">
+        <div class="donate-header">
+            <span class="donate-icon-main">🎬</span>
+            <h2>Поддержать проект</h2>
+        </div>
+        <p class="donate-text">Помоги Океан Кино расти и добавлять больше фильмов</p>
+        <div class="donate-buttons">
+            <button class="donate-btn" onclick="window.open('https://www.donationalerts.com/r/john_logs', '_blank')">💳 Отправить донат</button>
+            <div class="qr-wrapper">
+                <div class="qr-code-modern">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.donationalerts.com/r/john_logs" alt="QR код для доната">
+                    <div class="qr-text">📱 Наведи камеру</div>
+                </div>
+            </div>
+        </div>
+        <div class="donate-footer">
+            <span>🔒 Безопасно через DonationAlerts</span>
+        </div>
     </div>
 </div>
 
@@ -250,7 +348,7 @@
 <div class="video-grid" id="videoGrid"></div>
 <div class="no-results" id="noResults">Фильм не найден</div>
 <div class="footer">
-    <p>🌊 ОКЕАН КИНО | Плавный кинотеатр</p>
+    <p>🌊 ОКЕАН КИНО | Смотри фильмы онлайн бесплатно</p>
 </div>
 
 <script>
