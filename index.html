@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОКЕАН КИНО | Смотреть фильмы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: -1;
+        }
+        .navbar {
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(14px);
+            padding: 14px 24px;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #8b5cf6;
+        }
+        .nav-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid #8b5cf6;
+            padding: 8px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-btn:hover {
+            background: #8b5cf6;
+            transform: translateY(-2px);
+        }
+        .search-section {
+            padding: 36px 20px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-container {
+            display: flex;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 5px;
+            border: 1px solid #8b5cf6;
+        }
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            color: white;
+            outline: none;
+        }
+        .search-btn {
+            background: #8b5cf6;
+            border: none;
+            padding: 0 32px;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+        }
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero h1 {
+            font-size: 64px;
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            padding: 20px 45px;
+            border-radius: 80px;
+            border: 2px solid #8b5cf6;
+            backdrop-filter: blur(8px);
+        }
+        .donate-section {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .donate-card {
+            background: linear-gradient(135deg, #1e1b4b, #2e1065);
+            border-radius: 40px;
+            padding: 20px 36px;
+            text-align: center;
+            border: 1px solid #8b5cf6;
+            max-width: 500px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .donate-card:hover {
+            transform: translateY(-5px);
+        }
+        .donate-btn {
+            background: #8b5cf6;
+            border: none;
+            padding: 10px 32px;
+            border-radius: 40px;
+            color: white;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .extra-row {
+            padding: 20px 30px;
+        }
+        .extra-title {
+            font-size: 24px;
+            color: white;
+            border-left: 4px solid #f59e0b;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .extra-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 10px;
+        }
+        .extra-item {
+            min-width: 200px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 28px;
+            text-align: center;
+            padding: 18px;
+            cursor: pointer;
+            border: 1px solid #f59e0b;
+            transition: 0.3s;
+        }
+        .extra-item:hover {
+            transform: translateY(-8px);
+            background: rgba(245,158,11,0.2);
+        }
+        .extra-img {
+            font-size: 50px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 30px;
+        }
+        .video-card {
+            background: rgba(0,0,0,0.7);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid #8b5cf6;
+            transition: 0.3s;
+        }
+        .video-card:hover {
+            transform: translateY(-8px);
+        }
+        .video-title {
+            background: rgba(0,0,0,0.7);
+            padding: 18px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-bottom: 1px solid #8b5cf6;
+        }
+        .video-frame {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .video-frame video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .video-info {
+            padding: 16px;
+            color: white;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.5);
+        }
+        .no-results {
+            text-align: center;
+            color: white;
+            padding: 50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <button class="nav-btn" onclick="filterMovies('all')">Все</button>
+    <button class="nav-btn" onclick="filterMovies('action')">Боевики</button>
+    <button class="nav-btn" onclick="filterMovies('comedy')">Комедии</button>
+    <button class="nav-btn" onclick="filterMovies('drama')">Драмы</button>
+    <button class="nav-btn" onclick="filterMovies('thriller')">Триллеры</button>
+    <button class="nav-btn" onclick="filterMovies('fantasy')">Фэнтези</button>
+</div>
+
+<div class="search-section">
+    <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="Найти фильм..." onkeyup="searchMovies()">
+        <button class="search-btn" onclick="searchMovies()">Поиск</button>
+    </div>
+    <div id="searchResults" style="color:white; text-align:center; padding:10px;"></div>
+</div>
+
+<div class="hero">
+    <h1>🌊 ОКЕАН КИНО</h1>
+</div>
+
+<div class="donate-section">
+    <div class="donate-card" onclick="window.open('https://www.donationalerts.com/r/TV0Y_HNK', '_blank')">
+        <div class="donate-icon">🎬☕</div>
+        <h2 style="color:white;">Поддержать кинотеатр</h2>
+        <button class="donate-btn">Отправить донат</button>
+    </div>
+</div>
+
+<div class="extra-row">
+    <div class="extra-title">🔥 СУПЕРХИТЫ</div>
+    <div class="extra-scroll" id="extraRow"></div>
+</div>
+
+<div class="video-grid" id="videoGrid"></div>
+<div class="no-results" id="noResults">Фильм не найден</div>
+<div class="footer">
+    <p>🌊 ОКЕАН КИНО | Плавный кинотеатр</p>
+</div>
+
+<script>
+    const movies = [
+        { id: 1, name: "Джон Уик 4", category: "action", emoji: "🔫", info: "Киану Ривз возвращается", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+        { id: 2, name: "Борат", category: "comedy", emoji: "😂", info: "Скандальная комедия", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+        { id: 3, name: "Зеленая Книга", category: "drama", emoji: "🚗", info: "Обладатель Оскара", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
+        { id: 4, name: "Аватар 2", category: "fantasy", emoji: "🌊", info: "Возвращение на Пандору", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
+        { id: 5, name: "Оппенгеймер", category: "thriller", emoji: "💣", info: "Шедевр Нолана", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+        { id: 6, name: "Барби", category: "comedy", emoji: "🎀", info: "Яркая комедия", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" },
+        { id: 7, name: "Гладиатор 2", category: "action", emoji: "🏛️", info: "Легенда возвращается", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+        { id: 8, name: "Дюна 2", category: "fantasy", emoji: "🪱", info: "Пустыня ждёт", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
+        { id: 9, name: "Фуриоса", category: "action", emoji: "⚡", info: "Безумный Макс", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" }
+    ];
+
+    function renderAll() {
+        renderVideoGrid();
+        renderExtraRow();
+    }
+
+    function renderVideoGrid() {
+        const grid = document.getElementById('videoGrid');
+        grid.innerHTML = '';
+        movies.forEach(movie => {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.setAttribute('data-category', movie.category);
+            card.setAttribute('data-name', movie.name);
+            card.innerHTML = `
+                <div class="video-title">${movie.emoji} ${movie.name}</div>
+                <div class="video-frame">
+                    <video controls><source src="${movie.videoUrl}" type="video/mp4"></video>
+                </div>
+                <div class="video-info">${movie.info}</div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function renderExtraRow() {
+        const extraDiv = document.getElementById('extraRow');
+        extraDiv.innerHTML = '';
+        const extra = [movies[0], movies[3], movies[7]];
+        extra.forEach(m => {
+            extraDiv.innerHTML += `<div class="extra-item" onclick="scrollToMovie('${m.name}')"><div class="extra-img">${m.emoji}</div><div class="extra-title-text" style="color:white;">${m.name}</div></div>`;
+        });
+    }
+
+    function scrollToMovie(name) {
+        const cards = document.querySelectorAll('.video-card');
+        for (let card of cards) {
+            if (card.querySelector('.video-title').innerText.includes(name)) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                break;
+            }
+        }
+    }
+
+    function searchMovies() {
+        const text = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.querySelectorAll('.video-card');
+        let found = 0;
+        cards.forEach(card => {
+            const match = card.getAttribute('data-name').toLowerCase().includes(text);
+            card.style.display = (match || text === '') ? 'block' : 'none';
+            if (match) found++;
+        });
+        document.getElementById('noResults').style.display = (found === 0 && text !== '') ? 'block' : 'none';
+        document.getElementById('searchResults').innerHTML = text === '' ? '' : `Найдено: ${found}`;
+    }
+
+    function filterMovies(category) {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('searchResults').innerHTML = '';
+        const cards = document.querySelectorAll('.video-card');
+        cards.forEach(card => {
+            const cat = card.getAttribute('data-category');
+            card.style.display = (category === 'all' || cat === category) ? 'block' : 'none';
+        });
+        document.getElementById('noResults').style.display = 'none';
+    }
+
+    window.addEventListener('load', renderAll);
+</script>
+
+<!-- Adsterra Popunder Code -->
+<script src="https://pl29192555.profitablecpmratenetwork.com/12/34/9e/1234 9e180ac7d4232d45aff12c403cda.js"></script>
+
+</body>
+</html>
