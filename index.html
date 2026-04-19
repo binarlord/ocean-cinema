@@ -264,7 +264,7 @@
 <script>
 const movies = [
     { id: 1, name: "Джон Уик 4", category: "action", emoji: "🔫", info: "Киану Ривз возвращается", videoUrl: "https://www.youtube.com/embed/3zdOsu5sx3Y?controls=0&modestbranding=1&rel=0&showinfo=0" },
-    { id: 2, name: "Борат", category: "comedy", emoji: "😂", info: "Скандальная комедия", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+    { id: 2, name: "Борат", category: "comedy", emoji: "😂", info: "Скандальная комедия", videoUrl: "https://drive.google.com/file/d/1P4-ylDSx1dyK3Qc6tsO1-b4CPiRGz0Y9/preview" },
     { id: 3, name: "Зеленая Книга", category: "drama", emoji: "🚗", info: "Обладатель Оскара", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
     { id: 4, name: "Аватар 2", category: "fantasy", emoji: "🌊", info: "Возвращение на Пандору", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
     { id: 5, name: "Оппенгеймер", category: "thriller", emoji: "💣", info: "Шедевр Нолана", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
@@ -288,9 +288,13 @@ function renderVideoGrid() {
         card.setAttribute('data-category', movie.category);
         card.setAttribute('data-name', movie.name);
         const isYouTube = movie.videoUrl.includes('youtube.com/embed');
-        const videoTag = isYouTube ? 
-            `<iframe src="${movie.videoUrl}" allowfullscreen></iframe>` :
-            `<video controls><source src="${movie.videoUrl}" type="video/mp4"></video>`;
+        const isGoogleDrive = movie.videoUrl.includes('drive.google.com');
+        let videoTag = '';
+        if (isYouTube || isGoogleDrive) {
+            videoTag = `<iframe src="${movie.videoUrl}" allowfullscreen></iframe>`;
+        } else {
+            videoTag = `<video controls><source src="${movie.videoUrl}" type="video/mp4"></video>`;
+        }
         card.innerHTML = `
             <div class="video-title">${movie.emoji} ${movie.name}</div>
             <div class="video-frame">${videoTag}</div>
