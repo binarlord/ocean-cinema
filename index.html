@@ -1,320 +1,293 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Океан Кино — смотреть фильмы онлайн бесплатно</title>
-    <meta name="description" content="Океан Кино — смотри новинки кино онлайн бесплатно. Боевики, комедии, драмы, фэнтези. Без регистрации.">
-    <meta name="keywords" content="смотреть фильмы онлайн, фильмы бесплатно, кино онлайн, новинки кино, Океан Кино">
-    <meta name="author" content="Ocean Cinema">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Фавикон -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-image: url('https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: -1;
-        }
-
-        /* КРАСИВАЯ СОВРЕМЕННАЯ ШАПКА */
-        .navbar {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(16px);
-            padding: 12px 24px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.4);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(46, 16, 101, 0.3));
-            color: white;
-            border: 1px solid rgba(139, 92, 246, 0.6);
-            padding: 10px 28px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            letter-spacing: 0.3px;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-btn:hover {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
-            border-color: transparent;
-        }
-
-        .nav-btn:active {
-            transform: translateY(1px);
-        }
-
-        .search-section {
-            padding: 36px 20px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .search-container {
-            display: flex;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 60px;
-            padding: 5px;
-            border: 1px solid #8b5cf6;
-        }
-        .search-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 12px 24px;
-            color: white;
-            outline: none;
-        }
-        .search-btn {
-            background: #8b5cf6;
-            border: none;
-            padding: 0 32px;
-            border-radius: 50px;
-            color: white;
-            cursor: pointer;
-        }
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .hero h1 {
-            font-size: 64px;
-            background: linear-gradient(135deg, #c084fc, #8b5cf6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            display: inline-block;
-            padding: 20px 45px;
-            border-radius: 80px;
-            border: 2px solid #8b5cf6;
-            backdrop-filter: blur(8px);
-        }
-        .donate-section {
-            display: flex;
-            justify-content: center;
-            margin: 20px;
-        }
-        .modern-donate {
-            max-width: 550px;
-            width: 100%;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(30, 27, 75, 0.95), rgba(46, 16, 101, 0.95));
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            border: 1px solid rgba(139, 92, 246, 0.5);
-            transition: all 0.3s ease;
-        }
-        .modern-donate:hover {
-            transform: translateY(-5px);
-            border-color: #c084fc;
-            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.4);
-        }
-        .donate-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-        .donate-icon-main {
-            font-size: 40px;
-        }
-        .modern-donate h2 {
-            color: white;
-            font-size: 28px;
-            margin: 0;
-            background: linear-gradient(135deg, #c084fc, #8b5cf6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .donate-text {
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 15px;
-        }
-        .donate-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 20px;
-        }
-        .donate-btn {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-        }
-        .donate-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(139, 92, 246, 0.5);
-        }
-        .qr-wrapper {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 10px;
-            border: 1px solid rgba(245, 158, 11, 0.5);
-        }
-        .qr-code-modern {
-            text-align: center;
-        }
-        .qr-code-modern img {
-            border-radius: 16px;
-            background: white;
-            padding: 8px;
-            width: 140px;
-            height: 140px;
-        }
-        .qr-text {
-            color: #f59e0b;
-            font-size: 12px;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-        .donate-footer {
-            text-align: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .donate-footer span {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 12px;
-        }
-        .extra-row {
-            padding: 20px 30px;
-        }
-        .extra-title {
-            font-size: 24px;
-            color: white;
-            border-left: 4px solid #f59e0b;
-            padding-left: 15px;
-            margin-bottom: 20px;
-        }
-        .extra-scroll {
-            display: flex;
-            gap: 24px;
-            overflow-x: auto;
-            padding: 10px;
-        }
-        .extra-item {
-            min-width: 200px;
-            background: rgba(0,0,0,0.7);
-            border-radius: 28px;
-            text-align: center;
-            padding: 18px;
-            cursor: pointer;
-            border: 1px solid #f59e0b;
-            transition: 0.3s;
-        }
-        .extra-item:hover {
-            transform: translateY(-8px);
-            background: rgba(245,158,11,0.2);
-        }
-        .extra-img {
-            font-size: 50px;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 30px;
-        }
-        .video-card {
-            background: rgba(0,0,0,0.7);
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid #8b5cf6;
-            transition: 0.3s;
-        }
-        .video-card:hover {
-            transform: translateY(-8px);
-        }
-        .video-title {
-            background: rgba(0,0,0,0.7);
-            padding: 18px;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            border-bottom: 1px solid #8b5cf6;
-        }
-        .video-frame {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-        }
-        .video-frame video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .video-info {
-            padding: 16px;
-            color: white;
-            text-align: center;
-        }
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: rgba(255,255,255,0.5);
-        }
-        .no-results {
-            text-align: center;
-            color: white;
-            padding: 50px;
-            display: none;
-        }
-    </style>
+<meta name="google-site-verification" content="1IrC3226nqHNPhcgt4_Qgvi9Pzj10dqUrE-jqzWT364"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Океан Кино</title>
+<meta name="description" content="Океан Кино — смотри новинки кино онлайн бесплатно. Боевики, комедии, драмы, фэнтези. Без регистрации.">
+<meta name="keywords" content="смотреть фильмы онлайн, фильмы бесплатно, кино онлайн, новинки кино, Океан Кино">
+<meta name="author" content="Ocean Cinema">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-image: url('https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: -1;
+    }
+    .navbar {
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(14px);
+        padding: 14px 24px;
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        border-bottom: 1px solid #8b5cf6;
+    }
+    .nav-btn {
+        background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(46,16,101,0.3));
+        color: white;
+        border: 1px solid rgba(139,92,246,0.6);
+        padding: 10px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+        background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(139,92,246,0.4);
+    }
+    .search-section {
+        padding: 36px 20px 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .search-container {
+        display: flex;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(12px);
+        border-radius: 60px;
+        padding: 5px;
+        border: 1px solid #8b5cf6;
+    }
+    .search-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: 12px 24px;
+        color: white;
+        outline: none;
+    }
+    .search-btn {
+        background: #8b5cf6;
+        border: none;
+        padding: 0 32px;
+        border-radius: 50px;
+        color: white;
+        cursor: pointer;
+    }
+    .hero {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .hero h1 {
+        font-size: 64px;
+        background: linear-gradient(135deg, #c084fc, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        display: inline-block;
+        padding: 20px 45px;
+        border-radius: 80px;
+        border: 2px solid #8b5cf6;
+        backdrop-filter: blur(8px);
+    }
+    .donate-section {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+    }
+    .modern-donate {
+        max-width: 550px;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(135deg, rgba(30,27,75,0.95), rgba(46,16,101,0.95));
+        backdrop-filter: blur(10px);
+        border-radius: 40px;
+        border: 1px solid rgba(139,92,246,0.5);
+        transition: all 0.3s ease;
+    }
+    .modern-donate:hover {
+        transform: translateY(-5px);
+        border-color: #c084fc;
+    }
+    .donate-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    .donate-icon-main {
+        font-size: 40px;
+    }
+    .modern-donate h2 {
+        color: white;
+        font-size: 28px;
+        background: linear-gradient(135deg, #c084fc, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    .donate-text {
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .donate-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 20px;
+    }
+    .donate-btn {
+        background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        border: none;
+        padding: 12px 28px;
+        border-radius: 50px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .donate-btn:hover {
+        transform: scale(1.05);
+    }
+    .qr-wrapper {
+        background: rgba(255,255,255,0.1);
+        border-radius: 24px;
+        padding: 10px;
+        border: 1px solid rgba(245,158,11,0.5);
+    }
+    .qr-code-modern {
+        text-align: center;
+    }
+    .qr-code-modern img {
+        border-radius: 16px;
+        background: white;
+        padding: 8px;
+        width: 140px;
+        height: 140px;
+    }
+    .qr-text {
+        color: #f59e0b;
+        font-size: 12px;
+        margin-top: 8px;
+    }
+    .donate-footer {
+        text-align: center;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .donate-footer span {
+        color: rgba(255,255,255,0.5);
+        font-size: 12px;
+    }
+    .extra-row {
+        padding: 20px 30px;
+    }
+    .extra-title {
+        font-size: 24px;
+        color: white;
+        border-left: 4px solid #f59e0b;
+        padding-left: 15px;
+        margin-bottom: 20px;
+    }
+    .extra-scroll {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        padding: 10px;
+    }
+    .extra-item {
+        min-width: 200px;
+        background: rgba(0,0,0,0.7);
+        border-radius: 28px;
+        text-align: center;
+        padding: 18px;
+        cursor: pointer;
+        border: 1px solid #f59e0b;
+        transition: 0.3s;
+    }
+    .extra-item:hover {
+        transform: translateY(-8px);
+        background: rgba(245,158,11,0.2);
+    }
+    .extra-img {
+        font-size: 50px;
+    }
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 30px;
+    }
+    .video-card {
+        background: rgba(0,0,0,0.7);
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid #8b5cf6;
+        transition: 0.3s;
+    }
+    .video-card:hover {
+        transform: translateY(-8px);
+    }
+    .video-title {
+        background: rgba(0,0,0,0.7);
+        padding: 18px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        border-bottom: 1px solid #8b5cf6;
+    }
+    .video-frame {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+    }
+    .video-frame video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .video-info {
+        padding: 16px;
+        color: white;
+        text-align: center;
+    }
+    .footer {
+        text-align: center;
+        padding: 30px;
+        color: rgba(255,255,255,0.5);
+    }
+    .no-results {
+        text-align: center;
+        color: white;
+        padding: 50px;
+        display: none;
+    }
+</style>
 </head>
 <body>
 
-<!-- КРАСИВАЯ ШАПКА -->
 <div class="navbar">
     <button class="nav-btn" onclick="filterMovies('all')">🎬 Все</button>
     <button class="nav-btn" onclick="filterMovies('action')">🔥 Боевики</button>
@@ -347,7 +320,7 @@
             <button class="donate-btn" onclick="window.open('https://www.donationalerts.com/r/john_logs', '_blank')">💳 Отправить донат</button>
             <div class="qr-wrapper">
                 <div class="qr-code-modern">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.donationalerts.com/r/john_logs" alt="QR код для доната">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.donationalerts.com/r/john_logs" alt="QR код">
                     <div class="qr-text">📱 Наведи камеру</div>
                 </div>
             </div>
@@ -366,7 +339,7 @@
 <div class="video-grid" id="videoGrid"></div>
 <div class="no-results" id="noResults">Фильм не найден</div>
 <div class="footer">
-    <p>🌊 ОКЕАН КИНО | Смотри фильмы онлайн бесплатно</p>
+    <p>🌊 ОКЕАН КИНО</p>
 </div>
 
 <script>
@@ -382,11 +355,7 @@
         { id: 9, name: "Фуриоса", category: "action", emoji: "⚡", info: "Безумный Макс", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" }
     ];
 
-    function renderAll() {
-        renderVideoGrid();
-        renderExtraRow();
-    }
-
+    function renderAll() { renderVideoGrid(); renderExtraRow(); }
     function renderVideoGrid() {
         const grid = document.getElementById('videoGrid');
         grid.innerHTML = '';
@@ -395,26 +364,16 @@
             card.className = 'video-card';
             card.setAttribute('data-category', movie.category);
             card.setAttribute('data-name', movie.name);
-            card.innerHTML = `
-                <div class="video-title">${movie.emoji} ${movie.name}</div>
-                <div class="video-frame">
-                    <video controls><source src="${movie.videoUrl}" type="video/mp4"></video>
-                </div>
-                <div class="video-info">${movie.info}</div>
-            `;
+            card.innerHTML = `<div class="video-title">${movie.emoji} ${movie.name}</div><div class="video-frame"><video controls><source src="${movie.videoUrl}" type="video/mp4"></video></div><div class="video-info">${movie.info}</div>`;
             grid.appendChild(card);
         });
     }
-
     function renderExtraRow() {
         const extraDiv = document.getElementById('extraRow');
         extraDiv.innerHTML = '';
         const extra = [movies[0], movies[3], movies[7]];
-        extra.forEach(m => {
-            extraDiv.innerHTML += `<div class="extra-item" onclick="scrollToMovie('${m.name}')"><div class="extra-img">${m.emoji}</div><div class="extra-title-text" style="color:white;">${m.name}</div></div>`;
-        });
+        extra.forEach(m => { extraDiv.innerHTML += `<div class="extra-item" onclick="scrollToMovie('${m.name}')"><div class="extra-img">${m.emoji}</div><div class="extra-title-text" style="color:white;">${m.name}</div></div>`; });
     }
-
     function scrollToMovie(name) {
         const cards = document.querySelectorAll('.video-card');
         for (let card of cards) {
@@ -424,7 +383,6 @@
             }
         }
     }
-
     function searchMovies() {
         const text = document.getElementById('searchInput').value.toLowerCase();
         const cards = document.querySelectorAll('.video-card');
@@ -435,9 +393,8 @@
             if (match) found++;
         });
         document.getElementById('noResults').style.display = (found === 0 && text !== '') ? 'block' : 'none';
-        document.getElementById('searchResults').innerHTML = text === '' ? '' : `Найдено: ${found}`;
+        document.getElementById('searchResults').innerHTML = text === '' ? '' : `🔍 Найдено: ${found}`;
     }
-
     function filterMovies(category) {
         document.getElementById('searchInput').value = '';
         document.getElementById('searchResults').innerHTML = '';
@@ -448,12 +405,9 @@
         });
         document.getElementById('noResults').style.display = 'none';
     }
-
     window.addEventListener('load', renderAll);
 </script>
 
-<!-- Adsterra Popunder Code -->
 <script src="https://pl29192555.profitablecpmratenetwork.com/12/34/9e/1234 9e180ac7d4232d45aff12c403cda.js"></script>
-
 </body>
 </html>
