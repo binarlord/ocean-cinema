@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-<script src="https://pl29195498.profitablecpmratenetwork.com/e7/f1/18/e7f118702d5c8af0def2957ecdeaf49a.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -210,22 +209,6 @@
             height: 100%;
             border: none;
         }
-        .fullscreen-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 12px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .fullscreen-btn:hover {
-            background: #8b5cf6;
-        }
         .video-info {
             padding: 12px;
             color: white;
@@ -320,8 +303,7 @@ const movies = [
     { id: 11, name: "Приключения Клифа Бута", category: "comedy", emoji: "😂", info: "Приключенческая комедия", videoUrl: "https://rutube.ru/play/embed/799fe4b163cb804e291c90c83fbf51ca/" },
     { id: 12, name: "Балерина 2026", category: "action", emoji: "🩰", info: "Боевик/драма 2026", videoUrl: "https://rutube.ru/play/embed/1df322ce4281017208658c688641e689/" },
     { id: 13, name: "Мистер и миссис Смит", category: "action", emoji: "🔫", info: "Боевик/комедия", videoUrl: "https://rutube.ru/play/embed/e6ae7dfcf4af528bf10702d644e2b4a6/" },
-    { id: 14, name: "Крёстный отец 1 часть", category: "drama", emoji: "👔", info: "Драма/криминал", videoUrl: "https://rutube.ru/play/embed/6c9f685c1dea6e3e306849e29152546d/" },
-    { id: 15, name: "Авиатор", category: "drama", emoji: "✈️", info: "Биография/драма", videoUrl: "https://rutube.ru/play/embed/803f3cbe50ba40087546bc1e432e9208/" }
+    { id: 14, name: "Авиатор", category: "drama", emoji: "✈️", info: "Биография/драма", videoUrl: "https://rutube.ru/play/embed/803f3cbe50ba40087546bc1e432e9208/" }
 ];
 
 function renderAll() {
@@ -339,40 +321,20 @@ function renderVideoGrid() {
         card.setAttribute('data-name', movie.name);
         
         let videoTag = '';
-        let isIframe = false;
         
         if (movie.videoUrl.includes('youtube.com/embed') || movie.videoUrl.includes('vk.com/video_ext.php') || movie.videoUrl.includes('rutube.ru/play/embed')) {
-            videoTag = `<iframe id="video-${index}" src="${movie.videoUrl}" allowfullscreen></iframe>`;
-            isIframe = true;
+            videoTag = `<iframe src="${movie.videoUrl}" allowfullscreen></iframe>`;
         } else {
-            videoTag = `<video id="video-${index}" controls playsinline><source src="${movie.videoUrl}" type="video/mp4"></video>`;
+            videoTag = `<video controls playsinline><source src="${movie.videoUrl}" type="video/mp4"></video>`;
         }
-        
-        const fullscreenBtn = `<button class="fullscreen-btn" onclick="toggleFullscreen(${index}, ${isIframe})">⛶ Во весь экран</button>`;
         
         card.innerHTML = `
             <div class="video-title">${movie.emoji} ${movie.name}</div>
-            <div class="video-frame" id="frame-${index}">
-                ${videoTag}
-                ${fullscreenBtn}
-            </div>
+            <div class="video-frame">${videoTag}</div>
             <div class="video-info">${movie.info}</div>
         `;
         grid.appendChild(card);
     });
-}
-
-function toggleFullscreen(index, isIframe) {
-    const element = document.getElementById(`video-${index}`);
-    if (!element) return;
-    
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-    }
 }
 
 function renderExtraRow() {
