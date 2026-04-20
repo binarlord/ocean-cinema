@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-<script src="https://pl29195498.profitablecpmratenetwork.com/e7/f1/18/e7f118702d5c8af0def2957ecdeaf49a.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -306,7 +305,7 @@
 
 <script>
 const movies = [
-    { id: 1, name: "Джон Уик 4", category: "action", emoji: "🔫", info: "Киану Ривз возвращается", videoUrl: "https://www.youtube.com/embed/3zdOsu5sx3Y?controls=0&modestbranding=1&rel=0&showinfo=0" },
+    { id: 1, name: "Джон Уик 4", category: "action", emoji: "🔫", info: "Киану Ривз возвращается", videoUrl: "https://www.youtube.com/embed/yjRHZEUamCc?controls=0&modestbranding=1&rel=0&showinfo=0" },
     { id: 2, name: "Спермагедон", category: "comedy", emoji: "🎬", info: "Полный армагеддон", videoUrl: "https://vk.com/video_ext.php?oid=-34748216&id=456264415&hash=b6c1feb5b7c44689&hd=3" },
     { id: 3, name: "Зеленая Книга", category: "drama", emoji: "🚗", info: "Обладатель Оскара", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
     { id: 4, name: "Аватар 2", category: "fantasy", emoji: "🌊", info: "Возвращение на Пандору", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
@@ -336,7 +335,7 @@ function renderVideoGrid() {
         
         if (movie.videoUrl.includes('drive.google.com/uc?export=download')) {
             videoTag = `<video id="video-${index}" controls playsinline><source src="${movie.videoUrl}" type="video/mp4"></video>`;
-        } else if (movie.videoUrl.includes('youtube.com/embed')) {
+        } else if (movie.videoUrl.includes('youtube.com/embed') || movie.videoUrl.includes('vk.com/video_ext.php')) {
             videoTag = `<iframe id="video-${index}" src="${movie.videoUrl}" allowfullscreen></iframe>`;
             isIframe = true;
         } else {
