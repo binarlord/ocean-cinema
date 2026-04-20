@@ -308,14 +308,19 @@ const movies = [
     { id: 1, name: "Формула 1", category: "action", emoji: "🏎️", info: "Боевик-драма 4К", videoUrl: "https://vk.com/video_ext.php?oid=-200035764&id=456239351&autoplay=1" },
     { id: 2, name: "Интервью 2014", category: "comedy", emoji: "🎤", info: "Интервью 2014", videoUrl: "https://vk.com/video_ext.php?oid=-228669978&id=456239965&hash=ffc6853f913dfdbe&hd=4" },
     { id: 3, name: "Спермагедон", category: "comedy", emoji: "🎬", info: "Полный армагеддон", videoUrl: "https://vk.com/video_ext.php?oid=-34748216&id=456264415&hash=b6c1feb5b7c44689&hd=3" },
-    { id: 4, name: "Джон Уик 4", category: "action", emoji: "🔫", info: "Киану Ривз возвращается", videoUrl: "https://www.youtube.com/embed/yjRHZEUamCc?controls=0&modestbranding=1&rel=0&showinfo=0" },
-    { id: 5, name: "Зеленая Книга", category: "drama", emoji: "🚗", info: "Обладатель Оскара", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
-    { id: 6, name: "Аватар 2", category: "fantasy", emoji: "🌊", info: "Возвращение на Пандору", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
-    { id: 7, name: "Оппенгеймер", category: "thriller", emoji: "💣", info: "Шедевр Нолана", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
-    { id: 8, name: "Барби", category: "comedy", emoji: "🎀", info: "Яркая комедия", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" },
-    { id: 9, name: "Гладиатор 2", category: "action", emoji: "🏛️", info: "Легенда возвращается", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-    { id: 10, name: "Дюна 2", category: "fantasy", emoji: "🪱", info: "Пустыня ждёт", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
-    { id: 11, name: "Фуриоса", category: "action", emoji: "⚡", info: "Безумный Макс", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" }
+    { id: 4, name: "Проект конец света", category: "action", emoji: "🌍", info: "Конец света", videoUrl: "https://rutube.ru/play/embed/1df2f102e0ee2d1b7803919e67d46635/" },
+    { id: 5, name: "Белые люди не умеют прыгать", category: "comedy", emoji: "🏀", info: "White Men Can't Jump (1992)", videoUrl: "https://vk.com/video_ext.php?oid=-220018529&id=456246079&hash=40141ee39f18acd5&hd=4" },
+    { id: 6, name: "Быстрее ветра", category: "action", emoji: "💨", info: "Быстрее ветра (2025)", videoUrl: "https://vk.com/video_ext.php?oid=-213317266&id=456239692&hash=31a91f234dc9084e&hd=3" },
+    { id: 7, name: "Отпуск на двоих", category: "comedy", emoji: "🏖️", info: "People We Meet on Vacation / 2026", videoUrl: "https://vk.com/video_ext.php?oid=-123915905&id=456256145&hash=26e7f9fb811d8017&hd=4" },
+    { id: 8, name: "Шары на двоих", category: "comedy", emoji: "🎱", info: "Шары на двоих", videoUrl: "https://rutube.ru/play/embed/7045cb7ba09e6780e66acb616f5548db/" },
+    { id: 9, name: "Джон Уик 4", category: "action", emoji: "🔫", info: "Киану Ривз возвращается", videoUrl: "https://www.youtube.com/embed/yjRHZEUamCc?controls=0&modestbranding=1&rel=0&showinfo=0" },
+    { id: 10, name: "Зеленая Книга", category: "drama", emoji: "🚗", info: "Обладатель Оскара", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
+    { id: 11, name: "Аватар 2", category: "fantasy", emoji: "🌊", info: "Возвращение на Пандору", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
+    { id: 12, name: "Оппенгеймер", category: "thriller", emoji: "💣", info: "Шедевр Нолана", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+    { id: 13, name: "Барби", category: "comedy", emoji: "🎀", info: "Яркая комедия", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" },
+    { id: 14, name: "Гладиатор 2", category: "action", emoji: "🏛️", info: "Легенда возвращается", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+    { id: 15, name: "Дюна 2", category: "fantasy", emoji: "🪱", info: "Пустыня ждёт", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
+    { id: 16, name: "Фуриоса", category: "action", emoji: "⚡", info: "Безумный Макс", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" }
 ];
 
 function renderAll() {
@@ -337,7 +342,7 @@ function renderVideoGrid() {
         
         if (movie.videoUrl.includes('drive.google.com/uc?export=download')) {
             videoTag = `<video id="video-${index}" controls playsinline><source src="${movie.videoUrl}" type="video/mp4"></video>`;
-        } else if (movie.videoUrl.includes('youtube.com/embed') || movie.videoUrl.includes('vk.com/video_ext.php')) {
+        } else if (movie.videoUrl.includes('youtube.com/embed') || movie.videoUrl.includes('vk.com/video_ext.php') || movie.videoUrl.includes('rutube.ru/play/embed')) {
             videoTag = `<iframe id="video-${index}" src="${movie.videoUrl}" allowfullscreen></iframe>`;
             isIframe = true;
         } else {
