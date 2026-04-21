@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow">
     <link rel="icon" type="image/png" href="favicon.png">
     
-    <!-- Adsterra Popunder Code (первая реклама, в head) -->
+    <!-- Adsterra Popunder Code (исправлен) -->
     <script src="https://pl29195498.profitablecpmratenetwork.com/e7/f1/18/e7f1178702d5c8af0def2957ecdeaf49a.js"></script>
     
     <style>
@@ -228,13 +228,6 @@
             padding: 40px;
             display: none;
         }
-        .banner-container {
-            max-width: 100%;
-            margin: 20px auto;
-            text-align: center;
-            overflow: hidden;
-            border-radius: 16px;
-        }
         @media (min-width: 600px) {
             .video-grid { grid-template-columns: repeat(2, 1fr); }
             .nav-btn { padding: 10px 20px; font-size: 14px; }
@@ -255,6 +248,7 @@
     <button class="nav-btn" onclick="filterMovies('drama')">🎭 Драмы</button>
     <button class="nav-btn" onclick="filterMovies('thriller')">🔪 Триллеры</button>
     <button class="nav-btn" onclick="filterMovies('fantasy')">🐉 Фэнтези</button>
+    <button class="nav-btn" onclick="filterMovies('horror')">🔪 Хорроры</button>
 </div>
 
 <div class="search-section">
@@ -284,11 +278,6 @@
     </div>
 </div>
 
-<div class="banner-container">
-    <script async="async" data-cfasync="false" src="https://pl29208430.profitablecpmratenetwork.com/bf1aa82700a9dedff22502e24eb7874c/invoke.js"></script>
-<div id="container-bf1aa82700a9dedff22502e24eb7874c"></div>
-</div>
-
 <div class="extra-row">
     <div class="extra-title">🔥 СУПЕРХИТЫ</div>
     <div class="extra-scroll" id="extraRow"></div>
@@ -303,6 +292,7 @@
 
 <script>
 const movies = [
+    // Существующие фильмы (14 штук)
     { id: 1, name: "Формула 1", category: "action", emoji: "🏎️", info: "Боевик-драма 4К", videoUrl: "https://vk.com/video_ext.php?oid=-200035764&id=456239351&autoplay=1" },
     { id: 2, name: "Интервью 2014", category: "comedy", emoji: "🎤", info: "Интервью 2014", videoUrl: "https://vk.com/video_ext.php?oid=-228669978&id=456239965&hash=ffc6853f913dfdbe&hd=4" },
     { id: 3, name: "Спермагедон", category: "comedy", emoji: "🎬", info: "Полный армагеддон", videoUrl: "https://vk.com/video_ext.php?oid=-34748216&id=456264415&hash=b6c1feb5b7c44689&hd=3" },
@@ -316,7 +306,13 @@ const movies = [
     { id: 11, name: "Приключения Клифа Бута", category: "comedy", emoji: "😂", info: "Приключенческая комедия", videoUrl: "https://rutube.ru/play/embed/799fe4b163cb804e291c90c83fbf51ca/" },
     { id: 12, name: "Балерина 2026", category: "action", emoji: "🩰", info: "Боевик/драма 2026", videoUrl: "https://rutube.ru/play/embed/1df322ce4281017208658c688641e689/" },
     { id: 13, name: "Мистер и миссис Смит", category: "action", emoji: "🔫", info: "Боевик/комедия", videoUrl: "https://rutube.ru/play/embed/e6ae7dfcf4af528bf10702d644e2b4a6/" },
-    { id: 14, name: "Авиатор", category: "drama", emoji: "✈️", info: "Биография/драма", videoUrl: "https://rutube.ru/play/embed/803f3cbe50ba40087546bc1e432e9208/" }
+    { id: 14, name: "Авиатор", category: "drama", emoji: "✈️", info: "Биография/драма", videoUrl: "https://rutube.ru/play/embed/803f3cbe50ba40087546bc1e432e9208/" },
+    
+    // Новые фильмы
+    { id: 15, name: "Вернии ее из мертвых", category: "horror", emoji: "🧟", info: "Ужасы", videoUrl: "https://rutube.ru/play/embed/e3acf84e8649f9726d0ce075b0cff144/" },
+    { id: 16, name: "Крик 7", category: "horror", emoji: "🔪", info: "Ужасы", videoUrl: "https://rutube.ru/play/embed/8d15a1e5d065a79173cc57f7190f8eaf/" },
+    { id: 17, name: "5 ночей с Фредди 2", category: "horror", emoji: "🐻", info: "Ужасы", videoUrl: "https://rutube.ru/play/embed/bf62383e43e1d04bdbedc2cd90dc5f79/" },
+    { id: 18, name: "Волк с Уолл-стрит", category: "comedy", emoji: "🐺", info: "Комедия/драма", videoUrl: "https://vk.com/video_ext.php?oid=-227739296&id=456239318&hash=35afad3dac95f23e&hd=2" }
 ];
 
 function renderAll() {
